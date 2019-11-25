@@ -28,6 +28,8 @@ char dominical(int m, int y, int s) {
 
 int main(int argc, char *argv[])
 {
+	printf("\nLatin Mass Calendar Generator\n\n");
+
 	// set default locale
 	Yml::SetConfig("en", ".\\en-1962.yml", ".\\en-1962.txt");
 
@@ -62,54 +64,59 @@ int main(int argc, char *argv[])
 	FILE* fp;
 
 	// set locale if provided
-	String locale = "";
-	String fixed_txt = "";
-	String moveable_yml = "";
+	String locale = "en";
+	String fixed_txt = ".\\en-1962.txt";
+	String moveable_yml = ".\\en-1962.yml";
 
 	if (argc == 6) {
-		bool bError = false;
+		String locale = String(argv[3]);
+		String fixed_txt = String(argv[4]);
+		String moveable_yml = String(argv[5]);
+	}
+	else {
+		printf("Localisation files not specified, using default (English) if available\n");
+	}
+
+	printf("Localisation settings: \n");
+	printf(" locale = %s\n", locale.c_str());
+	printf(" fixed feasts file (.txt file) set to %s\n", fixed_txt.c_str());
+	printf(" moveable feasts file (.yml file) set to %s\n\n", moveable_yml.c_str());
+
+	bool bError = false;
 		
-		fp = fopen(argv[4], "r");
-		if (fp == NULL) {
-			bError = true;
-			printf("\nError:\n txt/fixed feasts file %s not found or inaccessible\n", argv[4]);
-		}
-		else {
-			fclose(fp);
-		}
+	fp = fopen(fixed_txt.c_str(), "r");
+	if (fp == NULL) {
+		bError = true;
+		printf("\nError:\n txt/fixed feasts file %s not found or inaccessible\n", fixed_txt.c_str());
+	}
+	else {
+		fclose(fp);
+	}
 
-		fp = fopen(argv[5], "r");
-		if (fp == NULL) {
-			if (!bError) {
-				printf("\nError:\n");
-			}
-			bError = true;
-			printf(" yml/moveable feasts file %s not found or inaccessible\n", argv[5]);
+	fp = fopen(moveable_yml.c_str(), "r");
+	if (fp == NULL) {
+		if (!bError) {
+			printf("\nError:\n");
 		}
-		else {
-			fclose(fp);
-		}
+		bError = true;
+		printf(" yml/moveable feasts file %s not found or inaccessible\n", moveable_yml.c_str());
+	}
+	else {
+		fclose(fp);
+	}
 
-		if (bError) {
-			return 3;
-		}
+	if (bError) {
+		return 3;
+	}
 
-		locale = String(argv[3]);
-		fixed_txt = String(argv[4]);
-		moveable_yml = String(argv[5]);
-		Yml::SetConfig(locale, moveable_yml, fixed_txt);
-		printf("Localisation settings: \n");
-		printf("locale = %s\n", locale.c_str());
-		printf("fixed feasts file (.txt file) set to %s\n", fixed_txt.c_str());
-		printf("moveable feasts file (.yml file) set to %s\n\n", moveable_yml.c_str());
+	Yml::SetConfig(locale, moveable_yml, fixed_txt);
 
-		Yml i18n;
-		bError = false;
-		i18n.get("or", bError);
-		if (bError) {
-			printf("Error reading key in yml file %s (did you put the locale files in the wrong order on the command line?)\n", locale.c_str(), moveable_yml.c_str());
-			return 4;
-		}
+	Yml i18n;
+	bError = false;
+	i18n.get("or", bError);
+	if (bError) {
+		printf("Error reading key in yml file %s (did you put the locale files in the wrong order on the command line?)\n", locale.c_str(), moveable_yml.c_str());
+		return 4;
 	}
 
 	// check if output file exists
