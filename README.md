@@ -1,4 +1,7 @@
 # TridentineLectionary
 A Latin Mass liturgical calendar generator
 
-[Example - 2019](TridentineLectionary/output.csv)
+## Examples
+[Liturgical Year 2018-2019](Debug/2019.csv)
+
+[Liturgical Year 2019-2020](Debug/2020.csv)
