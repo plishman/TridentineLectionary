@@ -28,6 +28,16 @@ const int BEGIN_EPOCH = 1970; // 1900 for 64-bit time64_t, sometimes 1970 (may b
 #define SEASON_PENTECOST		   7
 #define SEASON_AFTER_PENTECOST	   8
 
+struct Tr_Calendar_Day {
+	time64_t datetime;
+	String DayofWeek;
+	String Class;
+	String Colour;
+	String Mass;
+	String Commemoration;
+	bool HolyDayOfObligation;
+};
+
 class Tridentine {
 public:
 	static const char* const Feasts[68];
@@ -116,7 +126,7 @@ public:
 	static void GetMassAndCommFromTrFixedFeast(Tr_Fixed_Feast& trff, String& Mass, String& Commemoration, uint8_t season, uint8_t day_class);
 	static void HandleVotiveMasses(time64_t datetime, uint8_t& cls, uint8_t& col, String& Mass, String& Commemoration);
 	static void HandleVotiveMasses(time64_t datetime, bool& is_votive, uint8_t& cls, uint8_t& col, String& Mass, String& Commemoration);
-	static void get(time64_t datetime, bool doRogations = true);
+	static void get(time64_t datetime, Tr_Calendar_Day& td, bool doRogations = true);
 	static void GetMoveableFeast(time64_t datetime, bool doRogations, bool& is_feast, uint8_t& cls, uint8_t& col, bool& hdo, bool& feast_lord, bool& bCommemorationOnly, String& Mass, String& Commemoration);
 	static void GetFixedFeast(time64_t datetime, bool& is_feast, uint8_t& cls, uint8_t& col, bool& hdo, bool& feast_lord, bool& immaculate_conception, bool& bCommemorationOnly, String& Mass, String& Commemoration);
 	static void GetVotiveMass(time64_t datetime, bool& is_votive, uint8_t& cls, uint8_t& col, String& Mass, String& Commemoration);

@@ -2105,7 +2105,7 @@ void Tridentine::HandleVotiveMasses(time64_t datetime, bool& is_votive, uint8_t&
 	is_votive = false;
 }
 
-void Tridentine::get(time64_t datetime, bool doRogations) {
+void Tridentine::get(time64_t datetime, Tr_Calendar_Day& td, bool doRogations) {
 	int year = ::year(datetime);
 	uint8_t season = Season(datetime);
 
@@ -2240,15 +2240,30 @@ void Tridentine::get(time64_t datetime, bool doRogations) {
 	Yml i18n;
 	String Class = i18n.get("class." + String(cls));
 	String Colour = i18n.get("colour." + String(col));
+	String DayofWeek = i18n.get("weekday." + String(weekday(datetime, false)));
 
-#ifdef _WIN32
-	//printf("(%4d)\t%2d-%2d-%4d\t%s\t(%s)\t%s\t%s\n", year, ::day(datetime), ::month(datetime), ::year(datetime), Mass.c_str(), Class.c_str(), Commemoration.c_str(), Colour.c_str());
-	printf("%4d,%02d-%02d-%4d,\"%s\",\"%s\",\"%s\",\"%s\"\n", year, ::day(datetime), ::month(datetime), ::year(datetime), Class.c_str(), Colour.c_str(), Mass.c_str(), Commemoration.c_str());
+	td.datetime = datetime;
+	td.Class = Class;
+	td.Colour = Colour;
+	td.DayofWeek = DayofWeek;
+	td.Mass = Mass;
+	td.Commemoration = Commemoration;
+	td.HolyDayOfObligation = hdo;
+
+#if(false)
+	#ifdef _WIN32
+	String yearanddate = String(year) + "," + String(::day(datetime)) + "-" + String(::month(datetime)) + "-" + String(::year(datetime));
+	String liturgicalday = yearanddate + ",\"" + DayofWeek + "\",\"" + Class + "\",\"" + Colour + "\",\"" + Mass + "\",\"" + Commemoration + "\"\n";
+
+	//printf("%4d,%02d-%02d-%4d,\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n", year, ::day(datetime), ::month(datetime), ::year(datetime), DayofWeek.c_str(), Class.c_str(), Colour.c_str(), Mass.c_str(), Commemoration.c_str());
 
 	FILE* fp;
 	fp = fopen("output.csv", "ab");
-	fprintf(fp, "%4d,%02d-%02d-%4d,\"%s\",\"%s\",\"%s\",\"%s\"\n", year, ::day(datetime), ::month(datetime), ::year(datetime), Class.c_str(), Colour.c_str(), Mass.c_str(), Commemoration.c_str());
+	//fprintf(fp, "%4d,%02d-%02d-%4d,\"%s\",\"%s\",\"%s\",\"%s\"\n", year, ::day(datetime), ::month(datetime), ::year(datetime), Class.c_str(), Colour.c_str(), Mass.c_str(), Commemoration.c_str());
+	//fputs(liturgicalday.c_str(), fp);
+	fwrite(liturgicalday.c_str(), 1, liturgicalday.length(), fp);
 	fclose(fp);
+	#endif
 #endif
 }
 

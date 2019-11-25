@@ -5,6 +5,7 @@
 //#include <iostream>
 #include <stdio.h>
 #include "Tridentine.h"
+#include "Yml.h"
 
 // s==0 -> Julian calendar, otherwise Gregorian
 char dominical(int m, int y, int s) {
@@ -25,37 +26,147 @@ char dominical(int m, int y, int s) {
 
 
 
-int main()
+int main(int argc, char *argv[])
 {
-    //std::cout << "Hello World!\n"; 
-/*
-	for (int y = 2000; y <= 2020; y++) {
-		printf("%d\t", y);
-		for (int m = 1; m <= 12; m++) {
-			printf("%c ", dominical(m, y, 1));
-		}
-		printf("\n");
-	}
-*/
+	// set default locale
+	Yml::SetConfig("en", ".\\en-1962.yml", ".\\en-1962.txt");
 
-	FILE* fp; // empty output.csv if it exists
-	fp = fopen("output.csv", "w");
+	// check if 3 or 6 arguments provided (including argv[0], the filename/path of the program).
+	if (argc != 3 && argc != 6) {
+		printf("\nPurpose: Program outputs a liturgical calendar to the selected file for the user-selected liturgical year.\n\n");
+		printf("Usage: %s <liturgical_year> <output_filename>\n", argv[0]);
+		printf("\nLocalisation defaults: Language: en, Locale files:\n \".\\en-1962.yml\" (for moveable feasts) and \n \".\\en-1962.txt\" (for fixed feasts).\n");
+		printf(" - Unless others are specified, these files should both be present in the same directory as the program for it to work properly\n");
+		printf("\nIf you want to use other translations/locale files:\n");
+		printf("Usage: %s <liturgical_year> <output_filename> <lang> <fixed_feasts_filename.txt> <moveable_feasts_filename.yml>\n", argv[0]);
+		printf("\n\nError: Incorrect number of parameters\n");
+		return 1;
+	}
+
+
+	// get and check year
+	int year = 0;
+
+	int n = sscanf(argv[1], "%d", &year);
+	if (n != 1) {
+		printf("\nPurpose: Program outputs a liturgical calendar to the selected file for the user-selected liturgical year.\n\n");
+		printf("Usage: %s <liturgical_year> <output_filename>\n", argv[0]);
+		printf("\nLocalisation defaults: Language: en, Locale files:\n \".\\en-1962.yml\" (for moveable feasts) and \n \".\\en-1962.txt\" (for fixed feasts).\n");
+		printf(" - Unless others are specified, these files should both be present in the same directory as the program for it to work properly\n");
+		printf("\nIf you want to use other translations/locale files:\n");
+		printf("Usage: %s <liturgical_year> <output_filename> <lang> <fixed_feasts_filename.txt> <moveable_feasts_filename.yml>\n", argv[0]);
+		printf("\n\nError: Couldn't read a valid number for the year\n");
+		return 2;
+	}
+
+	FILE* fp;
+
+	// set locale if provided
+	String locale = "";
+	String fixed_txt = "";
+	String moveable_yml = "";
+
+	if (argc == 6) {
+		bool bError = false;
+		
+		fp = fopen(argv[4], "r");
+		if (fp == NULL) {
+			bError = true;
+			printf("\nError:\n txt/fixed feasts file %s not found or inaccessible\n", argv[4]);
+		}
+		else {
+			fclose(fp);
+		}
+
+		fp = fopen(argv[5], "r");
+		if (fp == NULL) {
+			if (!bError) {
+				printf("\nError:\n");
+			}
+			bError = true;
+			printf(" yml/moveable feasts file %s not found or inaccessible\n", argv[5]);
+		}
+		else {
+			fclose(fp);
+		}
+
+		if (bError) {
+			return 3;
+		}
+
+		locale = String(argv[3]);
+		fixed_txt = String(argv[4]);
+		moveable_yml = String(argv[5]);
+		Yml::SetConfig(locale, moveable_yml, fixed_txt);
+		printf("Localisation settings: \n");
+		printf("locale = %s\n", locale.c_str());
+		printf("fixed feasts file (.txt file) set to %s\n", fixed_txt.c_str());
+		printf("moveable feasts file (.yml file) set to %s\n\n", moveable_yml.c_str());
+
+		Yml i18n;
+		bError = false;
+		i18n.get("or", bError);
+		if (bError) {
+			printf("Error reading key in yml file %s (did you put the locale files in the wrong order on the command line?)\n", locale.c_str(), moveable_yml.c_str());
+			return 4;
+		}
+	}
+
+	// check if output file exists
+	fp = fopen(argv[2], "r");
+	if (fp != NULL) {
+		printf("\nFile exists - Ok to overwrite file?[y/N] ");
+		char r = ' ';
+		scanf("%c", &r);
+		if (r != 'y' && r != 'Y') {
+			printf(" Cancelled\n");
+			fclose(fp);
+			return 5;
+		}
+	}
+
+	// empty output file if it exists
+	fp = fopen(argv[2], "w");
 	fclose(fp);
 
-#if (false)
-	Tridentine::get(Tridentine::date(20, 3, 2017));
-	Tridentine::get2(Tridentine::date(20, 3, 2017), true);
-	/*
-	Tridentine::get(Tridentine::date(29, 12, 2019));	
-	Tridentine::get(Tridentine::date(18, 10, 2015));
-	Tridentine::get(Tridentine::date(25, 12, 2019));
-	Tridentine::get(Tridentine::date(25, 12, 2019) + 3600 * 6);
-	Tridentine::get(Tridentine::date(25, 12, 2019) + 3600 * 12);
-	Tridentine::get(Tridentine::date(25, 12, 2019) + 3600 * 13);
-*/
-#else
-	int daycounts[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	
+	// Output days of liturgical year
+	Tr_Calendar_Day cd;
 
+	time64_t start_datetime = Tridentine::Season_beginning(SEASON_ADVENT, Tridentine::date(1, 1, year - 1));
+	time64_t end_datetime = Tridentine::Season_beginning(SEASON_ADVENT, Tridentine::date(1, 1, year));
+
+	time64_t datetime = start_datetime;
+
+	fp = fopen(argv[2], "ab");
+	if (fp == NULL) {
+		printf("\nError: Couldn't open output file %s for writing.\n", argv[2]);
+		return 6;
+	}
+
+	String headers = "\"Liturgical Year\",\"Date\",\"Day of Week\",\"Class\",\"Obligatory\",\"Colour\",\"Mass\",\"Commemoration\"\n";
+	fwrite(headers.c_str(), 1, headers.length(), fp);
+
+	while (datetime < end_datetime) {
+		Tridentine::get(datetime, cd);
+		
+		String yearanddate = String(year) + "," + String(::day(datetime)) + "-" + String(::month(datetime)) + "-" + String(::year(datetime));
+		String hdo = cd.HolyDayOfObligation ? "+" : "";
+		String liturgicalday = yearanddate + ",\"" + cd.DayofWeek + "\",\"" + cd.Class + "\",\"" + hdo + "\",\"" + cd.Colour + "\",\"" + cd.Mass + "\",\"" + cd.Commemoration + "\"\n";
+
+		//printf("%4d,%02d-%02d-%4d,\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n", year, ::day(datetime), ::month(datetime), ::year(datetime), DayofWeek.c_str(), Class.c_str(), Colour.c_str(), Mass.c_str(), Commemoration.c_str());
+		fwrite(liturgicalday.c_str(), 1, liturgicalday.length(), fp);
+		
+		datetime += SECS_PER_DAY;
+		printf(".");
+	}
+
+	printf("\nCalendar written to file %s\n", argv[2]);
+	fclose(fp);
+	return 0;
+
+/*
+	int daycounts[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	for (int year = 2019; year < 2020; year++) {
 		for (int month = 1; month <= 12; month++) {
 			int numdays = daycounts[month];
@@ -67,21 +178,5 @@ int main()
 			}
 		}
 	}
-#endif
+*/
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
-
-
-//////// need to solve the liturgical year/ year -1 prob.
-//////// solved it in Temporale.cpp using year+1 for easter year,
-//////// and letting year = year-1 at all other times.

@@ -31,14 +31,17 @@ struct Tr_Fixed_Feast {
 
 class Yml {
 public:
-	String _yml_filename = ".\\en-1962.yml";
-	String _lang = "en";
+	static String lang;
+	static String yml_filename;
+	static String sanct_filename;
+	static void SetConfig(String lang, String yml_filename, String sanct_filename);
+
 	int _callcount = 0;
 	String getdate(time64_t t);
-	void SetConfig(String filename, String lang);
+	//void SetConfig(String filename, String lang);
 	String get(String I18nPath);
+	String get(String I18nPath, bool& bError);
 
-	String _sanct_filename = ".\\en-1962.txt";
 	int _Lectionary = 0;
 	bool _hdo = false;
 	int _rank = 4;

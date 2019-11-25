@@ -2,6 +2,16 @@
 #include <stdio.h>
 #include <direct.h>
 
+void Yml::SetConfig(String lang, String yml_filename, String sanct_filename) {
+	Yml::lang = lang;
+	Yml::yml_filename = yml_filename;
+	Yml::sanct_filename = sanct_filename;
+}
+
+String Yml::lang = "en";
+String Yml::yml_filename = ".\\en-1962.yml";
+String Yml::sanct_filename = ".\\en-1962.txt";
+
 String Yml::getdate(time64_t t) {
 	tmElements_t ts;
 	breakTime(t, ts);
@@ -25,12 +35,19 @@ String Yml::getdate(time64_t t) {
 	return date_format;
 }
 
-void Yml::SetConfig(String filename, String lang) {
-	_yml_filename = filename;
-	_lang = lang;
-}
+//void Yml::SetConfig(String filename, String lang) {
+//	_yml_filename = filename;
+//	_lang = lang;
+//}
 
 String Yml::get(String I18nPath) {
+	bool bError = false;
+	return get(I18nPath, bError);
+}
+
+String Yml::get(String I18nPath, bool& bError) {
+	bError = true;
+
 	if (I18nPath == "") return "";	// no output if no path
 
 #ifndef _WIN32
@@ -48,7 +65,7 @@ String Yml::get(String I18nPath) {
 	char* filestr;
 #endif
 
-	I18nPath = _lang + String(".") + I18nPath;
+	I18nPath = Yml::lang + String(".") + I18nPath;
 
 #ifndef _WIN32
 	String I18nFilename = "locales/" + String(I18n_LANGUAGES[_locale]) + ".yml";
@@ -60,7 +77,7 @@ String Yml::get(String I18nPath) {
 	//printf("cwd=[%s]\n", filepath);
 	//_yml_filename = String(filepath) + "\\..\\" + _yml_filename;
 	//printf("fsp=[%s]\n", _yml_filename.c_str());
-	FILE* fpi = fopen(_yml_filename.c_str(), "r");
+	FILE* fpi = fopen(Yml::yml_filename.c_str(), "r");
 	if (fpi == NULL) return "";
 	char buf[1024];
 #endif
@@ -185,6 +202,7 @@ String Yml::get(String I18nPath) {
 	_callcount++;
 
 	//printf("Found: read data: %s\n", readData.c_str());
+	bError = false;
 	return readData;
 }
 
@@ -245,7 +263,7 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 		return false;
 	}
 #else
-	FILE* fpi = fopen(_sanct_filename.c_str(), "r");
+	FILE* fpi = fopen(Yml::sanct_filename.c_str(), "r");
 	if (fpi == NULL) return false;
 #endif
 
