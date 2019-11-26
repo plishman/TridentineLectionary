@@ -72,7 +72,7 @@ Each Mass/Commemoration line is of the form ```<day of month>[_hour of day] <fla
 
 #### Flags:
 
-``` 1 2 3 ```: Class of Feast/Commemoration (Class 4 is assumed if not specified)
+``` 1 ``` ``` 2 ``` ``` 3 ```: Class of Feast/Commemoration (Class 4 is assumed if not specified)
 
 ``` o ```: Flag for Holy Day of Obligation
 
@@ -92,7 +92,7 @@ Each Mass/Commemoration line is of the form ```<day of month>[_hour of day] <fla
 
 ``` P ```: Flag for Rose liturgical colour/vestments
 
-The Liturgical Colour defaults to White if there is an Feast (not a Commemoration) for the day in question, so it does not need to be specified in these cases.
+The Liturgical Colour defaults to White if there is a Feast (not a Commemoration) for the day in question, so it does not need to be specified in these cases.
 
 In practice, only Red (``` R ```) needs to be specified, since Liturgical Colours for Feasts are either Red, White, or the colour of the liturgical season. 
 
