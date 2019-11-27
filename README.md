@@ -1,6 +1,9 @@
 # TridentineLectionary
 A Latin Mass liturgical calendar generator
 
+## Build
+The program can be built with Visual Studio 2017 or with gcc on Linux using the Make command. A pre-built Windows binary is available in the Debug folder (in the same folder as this Readme file).
+
 ## Examples
 [Liturgical Year 2018-2019](Debug/2019.csv)
 
