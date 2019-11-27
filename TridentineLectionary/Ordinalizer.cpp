@@ -22,7 +22,7 @@ void Ordinalizer::SetType(String type) {
 		_ordinal_type = i;
 	}
 
-#ifndef _WIN32
+#ifdef __AVR__
 	DEBUG_PRT.printf("\nOrdinal type is %d, %s\n", _ordinal_type, type.c_str());
 #endif
 }

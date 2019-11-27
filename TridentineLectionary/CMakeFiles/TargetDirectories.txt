@@ -1,0 +1,3 @@
+/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles/rebuild_cache.dir
+/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles/TridentineLectionary.dir
+/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles/edit_cache.dir

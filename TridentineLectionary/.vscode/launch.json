@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [        
+        {
+            "logging": { "trace": true, "traceResponse": true },
+            "name": "TridentineLectionary",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/plishman/Documents/TridentineLectionary/TridentineLectionary/TridentineLectionary",
+            "args": ["2019", "test2.csv", "en", "en-1962.txt", "en-1962.yml"],
+            "stopAtEntry": false,
+            "cwd": "/home/plishman/Documents/TridentineLectionary/TridentineLectionary/",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}

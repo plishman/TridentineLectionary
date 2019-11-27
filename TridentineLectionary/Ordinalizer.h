@@ -1,7 +1,7 @@
 #ifndef _ORDINALIZER_H
 #define _ORDINALIZER_H
 
-#ifndef _WIN32
+#ifdef __AVR__
 #include "RCGlobals.h"
 
 #include "Arduino.h"

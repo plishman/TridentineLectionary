@@ -5,7 +5,7 @@
 //#include <iostream>
 #include <stdio.h>
 #include "Tridentine.h"
-#include "Yml.h"
+#include "yml.h"
 
 // s==0 -> Julian calendar, otherwise Gregorian
 char dominical(int m, int y, int s) {
@@ -29,9 +29,6 @@ char dominical(int m, int y, int s) {
 int main(int argc, char *argv[])
 {
 	printf("\nLatin Mass Calendar Generator\n\n");
-
-	// set default locale
-	Yml::SetConfig("en", ".\\en-1962.yml", ".\\en-1962.txt");
 
 	// check if 3 or 6 arguments provided (including argv[0], the filename/path of the program).
 	if (argc != 3 && argc != 6) {
@@ -65,13 +62,18 @@ int main(int argc, char *argv[])
 
 	// set locale if provided
 	String locale = "en";
+#ifdef _WIN32
 	String fixed_txt = ".\\en-1962.txt";
 	String moveable_yml = ".\\en-1962.yml";
+#else
+	String fixed_txt = "./en-1962.txt";
+	String moveable_yml = "./en-1962.yml";
+#endif 
 
 	if (argc == 6) {
-		String locale = String(argv[3]);
-		String fixed_txt = String(argv[4]);
-		String moveable_yml = String(argv[5]);
+		locale = argv[3];
+		fixed_txt = argv[4];
+		moveable_yml = argv[5];
 	}
 	else {
 		printf("Localisation files not specified, using default (English) if available\n");
@@ -113,9 +115,9 @@ int main(int argc, char *argv[])
 
 	Yml i18n;
 	bError = false;
-	i18n.get("or", bError);
+	i18n.get("or", bError); // the translation for the word 'or' is used for localization in the epaper lectionary project, and is the last entry in the yml file. Therefore if it can be read, the file is likely parsable
 	if (bError) {
-		printf("Error reading key in yml file %s (did you put the locale files in the wrong order on the command line?)\n", locale.c_str(), moveable_yml.c_str());
+		printf("Error reading key in yml file %s (did you put the locale files in the wrong order on the command line?)\n", moveable_yml.c_str());
 		return 4;
 	}
 
@@ -124,7 +126,7 @@ int main(int argc, char *argv[])
 	if (fp != NULL) {
 		printf("\nFile exists - Ok to overwrite file?[y/N] ");
 		char r = ' ';
-		scanf("%c", &r);
+		int n = scanf("%c", &r);
 		if (r != 'y' && r != 'Y') {
 			printf(" Cancelled\n");
 			fclose(fp);

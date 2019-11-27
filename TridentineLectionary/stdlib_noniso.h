@@ -24,19 +24,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 extern "C" {
 #endif
 
-//	int atoi(const char *s);
+#ifdef __linux__
+	int _atoi(const char *s);
 
-//	long atol(const char* s);
+	long _atol(const char* s);
 
-//	double atof(const char* s);
+	double _atof(const char* s);
 
-//	char* itoa(int val, char *s, int radix);
+	char* _itoa(int val, char *s, int radix);
 
-//	char* ltoa(long val, char *s, int radix);
+	char* _ltoa(long val, char *s, int radix);
+#endif
 
 	char* utoa(unsigned int val, char *s, int radix);
 
-//	char* ultoa(unsigned long val, char *s, int radix);
+#ifdef __linux__
+	char* _ultoa(unsigned long val, char *s, int radix);
+#endif
 
 	char* dtostrf(double val, signed char width, unsigned char prec, char *s);
 

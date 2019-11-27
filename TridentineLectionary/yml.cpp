@@ -1,6 +1,9 @@
 #include "yml.h"
 #include <stdio.h>
+
+#ifdef _WIN32
 #include <direct.h>
+#endif
 
 void Yml::SetConfig(String lang, String yml_filename, String sanct_filename) {
 	Yml::lang = lang;
@@ -9,8 +12,14 @@ void Yml::SetConfig(String lang, String yml_filename, String sanct_filename) {
 }
 
 String Yml::lang = "en";
+
+#ifdef _WIN32
 String Yml::yml_filename = ".\\en-1962.yml";
 String Yml::sanct_filename = ".\\en-1962.txt";
+#else
+String Yml::yml_filename = "./en-1962.yml";
+String Yml::sanct_filename = "./en-1962.txt";
+#endif
 
 String Yml::getdate(time64_t t) {
 	tmElements_t ts;
@@ -50,7 +59,7 @@ String Yml::get(String I18nPath, bool& bError) {
 
 	if (I18nPath == "") return "";	// no output if no path
 
-#ifndef _WIN32
+#ifdef __AVR__
 	//DEBUG_PRT.println("I18n::get()");
 
 	if (!configparams.have_config) {
@@ -67,7 +76,7 @@ String Yml::get(String I18nPath, bool& bError) {
 
 	I18nPath = Yml::lang + String(".") + I18nPath;
 
-#ifndef _WIN32
+#ifdef __AVR__
 	String I18nFilename = "locales/" + String(I18n_LANGUAGES[_locale]) + ".yml";
 	File file = openFile(I18nFilename, FILE_READ);
 	if (!file) return "";
@@ -106,13 +115,13 @@ String Yml::get(String I18nPath, bool& bError) {
 	bool bFirstPass = true;
 
 	do {
-#ifndef _WIN32
+#ifdef __AVR__
 #else
 		filestr = fgets(buf, 1024, fpi);
 		if (filestr == NULL) continue; // EOF: if at end, drop out of loop and check if anything was found
 #endif
 
-#ifndef _WIN32
+#ifdef __AVR__
 		readLine = this->readLine(file);
 		if (readLine == "") continue;
 #else
@@ -168,14 +177,14 @@ String Yml::get(String I18nPath, bool& bError) {
 			bTokenMatched = true;
 		}
 	}
-#ifndef _WIN32
+#ifdef __AVR__
 	while (file.available() && !bTokenMatched); // to loop, File needs to have returned data and token remained unmatched
 #else
 	while (filestr != NULL && !bTokenMatched); // to loop, File needs to have returned data and token remained unmatched
 #endif
 
 	if (!bTokenMatched) { // reached end of file without finding the token
-#ifndef _WIN32
+#ifdef __AVR__
 		DEBUG_PRT.print(F("token ")); DEBUG_PRT.print(lookingforToken); DEBUG_PRT.println(F(" not found (EOF)"));
 		closeFile(file);
 #else
@@ -187,7 +196,7 @@ String Yml::get(String I18nPath, bool& bError) {
 		return String("");
 	}
 
-#ifndef _WIN32
+#ifdef __AVR__
 	closeFile(file);
 #else
 	fclose(fpi);
@@ -228,7 +237,7 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 	feast.bHasCommemoration = false;
 
 
-#ifndef _WIN32
+#ifdef __AVR__
 	if (_I18n == NULL) {
 		DEBUG_PRT.println(F("Sanctorale::get(): _I18n is null"));
 		return false;
@@ -254,7 +263,7 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 	String readLine = "";
 	String readLine2 = "";
 
-#ifndef _WIN32
+#ifdef __AVR__
 	String I18nFilename = _I18n->configparams.sanctorale_filename; //"data/" + String(_I18n->I18n_SANCTORALE[_locale]);
 
 	File file = _I18n->openFile(I18nFilename, FILE_READ);
@@ -270,7 +279,7 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 	// scan for "= <month_number>"
 	bool bFound = false;
 	do {
-#ifndef _WIN32
+#ifdef __AVR__
 		readLine = _I18n->readLine(file);
 		if (readLine == "") continue;
 #else
@@ -282,7 +291,7 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 		if (readLine.indexOf(month_token) == 0) { // try to match month number, eg. =11 for November
 			bFound = true;
 		}
-#ifndef _WIN32
+#ifdef __AVR__
 	} while (!bFound && file.available());
 #else
 	} while (!bFound && !(feof(fpi)));
@@ -297,7 +306,7 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 	String daynumber = String(d) + " "; // day of month number starts the line, and is followed by a space
 	String daynumber_with_hour = String(d) + "_" + String(hour) + " ";
 	do {
-#ifndef _WIN32
+#ifdef __AVR__
 		readLine = _I18n->readLine(file);
 		if (readLine == "") continue;
 #else
@@ -318,14 +327,14 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 		if (readLine == "" || readLine.indexOf("=") == 0) { // scanned past end of month
 			bEndOfMonth = true;
 		}
-#ifndef _WIN32
+#ifdef __AVR__
 	} while (!bFound && !bEndOfMonth && file.available());
 #else
 	} while (!bFound && !bEndOfMonth && !feof(fpi));
 #endif
 
 	if (!bFound || bEndOfMonth) {
-#ifndef _WIN32
+#ifdef __AVR__
 		_I18n->closeFile(file);
 #else
 		fclose(fpi);
@@ -334,7 +343,7 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 	}
 
 	// now read one more line, and if it matches the same day then it will be a Commemoration
-#ifndef _WIN32
+#ifdef __AVR__
 	if (file.available) {
 		readLine2 = _I18n->readLine(file);
 	}
@@ -354,7 +363,7 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 		}
 	}
 
-#ifndef _WIN32
+#ifdef __AVR__
 	_I18n->closeFile(file);
 #else
 	fclose(fpi);

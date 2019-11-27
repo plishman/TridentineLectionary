@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "TimeLib.h"
 #include "Tridentine.h"
-#ifdef _WIN32
+#ifndef __AVR__
 #include <stdio.h>
 #include "yml.h"
 #endif
@@ -125,7 +125,7 @@ void Tridentine::print_date(time64_t datetime) {
 }
 
 int Tridentine::year(time64_t date) {
-//#ifdef _WIN32
+//#ifndef __AVR__
 //	struct tm* ts = gmtime(&date);
 //	return ts->tm_year + BEGIN_EPOCH;
 //#else
@@ -2251,7 +2251,7 @@ void Tridentine::get(time64_t datetime, Tr_Calendar_Day& td, bool doRogations) {
 	td.HolyDayOfObligation = hdo;
 
 #if(false)
-	#ifdef _WIN32
+	#ifndef __AVR__
 	String yearanddate = String(year) + "," + String(::day(datetime)) + "-" + String(::month(datetime)) + "-" + String(::year(datetime));
 	String liturgicalday = yearanddate + ",\"" + DayofWeek + "\",\"" + Class + "\",\"" + Colour + "\",\"" + Mass + "\",\"" + Commemoration + "\"\n";
 

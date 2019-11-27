@@ -27,7 +27,7 @@
   1.4  5  Sep 2014 - compatibility with Arduino 1.5.7
 */
 
-#ifndef _WIN32
+#ifdef __AVR__
 #if ARDUINO >= 100
 #include <Arduino.h> 
 #else
@@ -37,14 +37,24 @@
 
 #include "TimeLib.h"
 
+#ifndef __AVR__	
 #ifdef _WIN32
 #include <windows.h>
 long millis() {
-	SYSTEMTIME time;
+	SYSTEMTIME time;	// Windows
 	GetSystemTime(&time);
 	LONG time_ms = (time.wSecond * 1000) + time.wMilliseconds;
 	return time_ms;
 }
+#else
+#include <time.h>
+#include <sys/time.h> // Unix/Linux
+long millis() {
+	struct timeval t;
+	gettimeofday(&t, NULL);
+	return (t.tv_sec * 1000) + (t.tv_usec / 1000);
+}
+#endif
 #endif 
 
 static tmElements_t tm;          // a cache of time elements

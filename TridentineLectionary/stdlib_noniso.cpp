@@ -19,7 +19,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 Modified 03 April 2015 by Markus Sattler
 */
 
+#ifndef __linux__
 #include <stdlib.h>
+#endif
+
 #include <string.h>
 #include <stdio.h>
 #include "stdlib_noniso.h"
@@ -27,21 +30,22 @@ Modified 03 April 2015 by Markus Sattler
 #include "inttypes.h"
 
 #define ASCII_ZERO  0x30
-/*
-int atoi(const char* s) {
+
+#ifdef __linux__
+int _atoi(const char* s) {
 	return (int)atol(s);
 }
 
-long atol(const char* s) {
+long _atol(const char* s) {
 	char * tmp;
 	return strtol(s, &tmp, 10);
 }
 
-double atof(const char* s) {
+double _atof(const char* s) {
 	char * tmp;
 	return strtod(s, &tmp);
 }
-*/
+#endif
 
 void reverse(char* begin, char* end) {
 	char *is = begin;
@@ -55,13 +59,13 @@ void reverse(char* begin, char* end) {
 	}
 }
 
-/*
-char* itoa(int val, char *string, int radix)
+#ifdef __linux__
+char* _itoa(int val, char *string, int radix)
 {
-	return ltoa(val, string, radix);
+	return _ltoa(val, string, radix);
 }
 
-char* ltoa(long val, char *string, int radix)
+char* _ltoa(long val, char *string, int radix)
 {
 	char tmp[33];
 	char *tp = tmp;
@@ -110,15 +114,15 @@ char* ltoa(long val, char *string, int radix)
 
 	return string;
 }
-*/
+#endif
 
 char* utoa(unsigned int val, char *string, int radix)
 {
 	return _ultoa(val, string, radix);
 }
 
-/*
-char* ultoa(unsigned long val, char *string, int radix)
+#ifdef __linux__
+char* _ultoa(unsigned long val, char *string, int radix)
 {
 	char tmp[33];
 	char *tp = tmp;
@@ -154,7 +158,8 @@ char* ultoa(unsigned long val, char *string, int radix)
 
 	return string;
 }
-*/
+#endif
+
 void shiftOutDigit(double *number, int count, char *s)
 {
 	double tmp = *number;
