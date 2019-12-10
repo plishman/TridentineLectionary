@@ -1,0 +1,17 @@
+﻿  pch.cpp
+  Ordinalizer.cpp
+  stdlib_noniso.cpp
+c:\users\phil lishman\documents\github-lectionary\tridentinelectionary\tridentinelectionary\stdlib_noniso.cpp(251): warning C4244: '=': conversion from 'unsigned __int64' to 'char', possible loss of data
+  Time.cpp
+c:\users\phil lishman\documents\github-lectionary\tridentinelectionary\tridentinelectionary\time.cpp(271): warning C4244: '=': conversion from 'uint64_t' to 'uint8_t', possible loss of data
+  Tridentine.cpp
+c:\users\phil lishman\documents\github-lectionary\tridentinelectionary\tridentinelectionary\tridentine.cpp(1540): warning C4244: '+=': conversion from '__int64' to 'uint8_t', possible loss of data
+c:\users\phil lishman\documents\github-lectionary\tridentinelectionary\tridentinelectionary\tridentine.cpp(1825): warning C4244: '=': conversion from '__int64' to 'uint8_t', possible loss of data
+  TridentineLectionary.cpp
+  WString.cpp
+  yml.cpp
+c:\users\phil lishman\documents\github-lectionary\tridentinelectionary\tridentinelectionary\yml.cpp(454): warning C4018: '<': signed/unsigned mismatch
+c:\users\phil lishman\documents\github-lectionary\tridentinelectionary\tridentinelectionary\yml.cpp(458): warning C4244: '=': conversion from 'long' to 'uint16_t', possible loss of data
+  Generating Code...
+c:\users\phil lishman\documents\github-lectionary\tridentinelectionary\tridentinelectionary\tridentine.cpp(1499): warning C4715: 'Tridentine::Season': not all control paths return a value
+  TridentineLectionary.vcxproj -> C:\Users\Phil Lishman\Documents\github-lectionary\TridentineLectionary\Debug\TridentineLectionary.exe

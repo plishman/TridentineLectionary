@@ -2406,7 +2406,7 @@ void Tridentine::GetFixedFeast(time64_t datetime, bool& is_feast, uint8_t& cls, 
 		
 		feast_lord = trff.Feast_Of_The_Lord;
 		immaculate_conception = trff.ImmaculateConception;
-		hdo = trff.Holy_Day_Of_Obligation;
+		hdo = trff.Holy_Day_Of_Obligation || sunday(datetime);
 	}
 }
 
