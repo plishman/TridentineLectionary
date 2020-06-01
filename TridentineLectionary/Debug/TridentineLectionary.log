@@ -1,14 +1,2 @@
-﻿  pch.cpp
-  Ordinalizer.cpp
-  stdlib_noniso.cpp
-c:\users\phil lishman\documents\vm shared folder\tridentinelectionary\tridentinelectionary\stdlib_noniso.cpp(251): warning C4244: '=': conversion from 'unsigned __int64' to 'char', possible loss of data
-  Time.cpp
-c:\users\phil lishman\documents\vm shared folder\tridentinelectionary\tridentinelectionary\time.cpp(271): warning C4244: '=': conversion from 'uint64_t' to 'uint8_t', possible loss of data
-  Tridentine.cpp
-  TridentineLectionary.cpp
-  WString.cpp
-  yml.cpp
-c:\users\phil lishman\documents\vm shared folder\tridentinelectionary\tridentinelectionary\yml.cpp(457): warning C4018: '<': signed/unsigned mismatch
-c:\users\phil lishman\documents\vm shared folder\tridentinelectionary\tridentinelectionary\yml.cpp(461): warning C4244: '=': conversion from 'long' to 'uint16_t', possible loss of data
-  Generating Code...
+﻿  TridentineLectionary.cpp
   TridentineLectionary.vcxproj -> C:\Users\Phil Lishman\Documents\VM shared folder\TridentineLectionary\Debug\TridentineLectionary.exe

@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 		return 6;
 	}
 
-	String headers = "\"Liturgical Year\",\"Date\",\"Day of Week\",\"Class\",\"Obligatory\",\"Colour\",\"Mass\",\"Commemoration\"\n";
+	String headers = "\"Liturgical Year\",\"Date\",\"Day of Week\",\"Class\",\"Obligatory\",\"Colour\",\"Mass\",\"Commemoration\",\"Folder\"\n";
 	fwrite(headers.c_str(), 1, headers.length(), fp);
 
 	while (datetime < end_datetime) {
