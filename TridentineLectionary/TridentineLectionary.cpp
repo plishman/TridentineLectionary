@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
 		
 		String yearanddate = String(year) + "," + String(::day(datetime)) + "-" + String(::month(datetime)) + "-" + String(::year(datetime));
 		String hdo = cd.HolyDayOfObligation ? "+" : "";
-		String liturgicalday = yearanddate + ",\"" + cd.DayofWeek + "\",\"" + cd.Class + "\",\"" + hdo + "\",\"" + cd.Colour + "\",\"" + cd.Mass + "\",\"" + cd.Commemoration + "\"\n";
+		String liturgicalday = yearanddate + ",\"" + cd.DayofWeek + "\",\"" + cd.Class + "\",\"" + hdo + "\",\"" + cd.Colour + "\",\"" + cd.Mass + "\",\"" + cd.Commemoration + "\",\"" + cd.Filename1962 + "\"\n";
 
 		//printf("%4d,%02d-%02d-%4d,\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n", year, ::day(datetime), ::month(datetime), ::year(datetime), DayofWeek.c_str(), Class.c_str(), Colour.c_str(), Mass.c_str(), Commemoration.c_str());
 		fwrite(liturgicalday.c_str(), 1, liturgicalday.length(), fp);

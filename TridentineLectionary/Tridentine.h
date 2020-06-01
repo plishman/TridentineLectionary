@@ -36,11 +36,13 @@ struct Tr_Calendar_Day {
 	String Mass;
 	String Commemoration;
 	bool HolyDayOfObligation;
+	String Filename1962;
 };
 
 class Tridentine {
 public:
 	static const char* const Feasts[68];
+	static const char* const WeekDays[7];
 	static time64_t date(int day, int month, int year);
 	static int date_difference(time64_t date1, time64_t date2);
 	static void print_date(time64_t datetime);
@@ -52,6 +54,7 @@ public:
 	static bool sunday(time64_t date);
 	static time64_t sunday_after(time64_t date);
 	static int dayofmonth(time64_t date);
+	static int monthofyear(time64_t date);
 	static bool firstday(uint8_t day, time64_t datetime);
 	static time64_t start_date(int year);
 	static time64_t end_date(int year);
@@ -131,6 +134,8 @@ public:
 	static void GetFixedFeast(time64_t datetime, bool& is_feast, uint8_t& cls, uint8_t& col, bool& hdo, bool& feast_lord, bool& immaculate_conception, bool& bCommemorationOnly, String& Mass, String& Commemoration);
 	static void GetVotiveMass(time64_t datetime, bool& is_votive, uint8_t& cls, uint8_t& col, String& Mass, String& Commemoration);
 	static void GetDay(time64_t datetime, String& Mass);
+	static void Get1962FileDir(time64_t datetime, String& FileDir);
+	static bool FileExists(String filename);
 
 	
 };

@@ -308,11 +308,14 @@ bool Yml::get_fixed_feast(time64_t date, Tr_Fixed_Feast& feast) {
 	do {
 #ifdef __AVR__
 		readLine = _I18n->readLine(file);
-		if (readLine == "") continue;
+		//if (readLine == "") continue;
+		if (readLine == "" || readLine.indexOf("#") == 0) continue; // lines which start with a # are comments, and are ignored
+
 #else
 		filestr = fgets(buf, 1024, fpi);
 		if (filestr == NULL) continue; // EOF: if at end, drop out of loop and check if anything was found
 		readLine = String(buf);
+		if (readLine == "" || readLine.indexOf("#") == 0) continue; // lines which start with a # are comments, and are ignored
 #endif
 
 		if (readLine.indexOf(daynumber_with_hour) == 0) { // got a day number with an hour (more than one Mass this day - eg. Christmas Day)

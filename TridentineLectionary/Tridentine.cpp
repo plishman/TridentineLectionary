@@ -97,6 +97,8 @@ const char* const Tridentine::Feasts[68] = {
 	"christ_king"
 };
 
+const char* const Tridentine::WeekDays[7] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}; // Days of week in Python order, ie Mon=0, Sun=6
+
 time64_t Tridentine::date(int day, int month, int year) {
 	::tmElements_t ts;						// for arduino
 	ts.Second = 0;							/* seconds,  range 0 to 59          */
@@ -190,6 +192,12 @@ int Tridentine::dayofmonth(time64_t date) {
 	::tmElements_t ts;						// for arduino
 	::breakTime(date, ts);
 	return ts.Day;
+}
+
+int Tridentine::monthofyear(time64_t date) {
+	::tmElements_t ts;						// for arduino
+	::breakTime(date, ts);
+	return ts.Month;
 }
 
 bool Tridentine::firstday(uint8_t day, time64_t datetime) {
@@ -1496,6 +1504,8 @@ uint8_t Tridentine::Season(time64_t datetime) {
 	if ((datetime >= TrinitySunday(year)) && datetime < first_advent_sunday(year)) {
 		return SEASON_AFTER_PENTECOST;
 	}
+
+	return SEASON_ORDINARY;
 }
 
 time64_t Tridentine::Season_beginning(uint8_t season, time64_t datetime) {
@@ -1537,7 +1547,7 @@ uint8_t Tridentine::Season_Week(time64_t datetime, uint8_t season) {
 	}
 
 	if (week1_beginning <= datetime) {
-		week += (date_difference(week1_beginning, datetime) / (SECS_PER_DAY * DAYS_PER_WEEK));
+		week += (uint8_t)((date_difference(week1_beginning, datetime) / (SECS_PER_DAY * DAYS_PER_WEEK)));
 	}
 
 	if (season == SEASON_AFTER_PENTECOST || season == SEASON_ADVENT) {
@@ -1600,17 +1610,17 @@ void Tridentine::ColourAndClass(time64_t datetime, bool doRogations, uint8_t& co
 		return;
 	}
 
-	if (issameday(datetime, Sexagesima(year)) || issameday(datetime, StMatthias(year))) {
-		if (issameday(StMatthias(year), Sexagesima(year))) {
+
+	if (issameday(datetime, StMatthias(year))) {
+		cls = 2;	// feast of St Matthias
+		col = TR_LIT_COLOUR_RED;
+	
+		if (issameday(datetime, Sexagesima(year))) {
 			cls = 2;	// feast of St Matthias is not celebrated if it falls on same day as Sexagesima 
 			col = TR_LIT_COLOUR_VIOLET;
-			return;
 		}
-		else {
-			cls = 2;
-			col = TR_LIT_COLOUR_RED;
-			return;
-		}
+		
+		return;
 	}
 
 	if (doRogations) {
@@ -1636,6 +1646,18 @@ void Tridentine::ColourAndClass(time64_t datetime, bool doRogations, uint8_t& co
 	}
 
 	if (issameday(datetime, TrinitySunday(year))) {
+		col = TR_LIT_COLOUR_WHITE;
+		cls = 1;
+		return;
+	}
+
+	if (issameday(datetime, CorpusChristi(year))) {
+		col = TR_LIT_COLOUR_WHITE;
+		cls = 1;
+		return;
+	}
+
+	if (issameday(datetime, ChristTheKing(year))) {
 		col = TR_LIT_COLOUR_WHITE;
 		cls = 1;
 		return;
@@ -1822,7 +1844,7 @@ void Tridentine::GetDay(time64_t datetime, String& Mass) {
 			// is in Nativity Octave
 			yml_subpath = "nativity_octave.";
 			if (!bSunday) {
-				octave_daynumber = ((datetime - nativity(year)) / SECS_PER_DAY) + 1;
+				octave_daynumber = (uint8_t)(((datetime - nativity(year)) / SECS_PER_DAY) + 1);
 			}
 		}
 		break;
@@ -1950,6 +1972,293 @@ void Tridentine::GetDay(time64_t datetime, String& Mass) {
 			Mass.replace("%{day}", ordinalizer.ordinalize(octave_daynumber));
 		}
 	}
+}
+
+void Tridentine::Get1962FileDir(time64_t datetime, String& FileDir) {
+	bool bSunday = sunday(datetime);
+	int year = ::year(datetime);
+
+	int day_of_month = dayofmonth(datetime);
+	int month_of_year = monthofyear(datetime);
+	int day = weekday(datetime, true);
+
+	FileDir = "";
+
+	uint8_t season = Season(datetime);
+	uint8_t season_week = Season_Week(datetime, season);
+	uint8_t octave_daynumber = 0;
+
+	bool bOverrideIfFeast = false; // if set, then the string in the variable fd will be used as the directory name only if there is no feast day on the same day (these are the month/day folders, eg 1962/01/05/)
+	
+	String dir_season = "";
+	String dir_sub = "";
+	String dir_subsub = "";
+	String dir_day = "";
+
+	switch (season) {
+	case SEASON_ADVENT:
+		//fd = "Advent/";
+		dir_season = "Advent";
+
+		if (bSunday) {
+			dir_sub = "Sunday";
+			dir_day = String(season_week);
+			break;
+		}
+
+		if (IsEmberDay(datetime)) {
+			dir_sub = "Ember";
+			dir_day = String(WeekDays[day]);
+		}
+		break;
+
+	case SEASON_CHRISTMAS:
+		dir_season = "Christmas";
+
+		if (issameday(datetime, nativity(year))) { // Christmas Day
+			dir_day = "Day";
+			break;
+		}
+
+		if (issameday(datetime, HolyName(year))) {
+			dir_day = "HolyName";
+			break;
+		}
+
+		if (bSunday && !issameday(datetime, nativity(year)) && datetime > nativity(year) && datetime < date(1, 1, year + 1)) {
+			// Sunday in the Octave of Christmas
+			dir_day = "Sunday";
+			break;
+		}
+
+		if (!bSunday && datetime > date(1, 1, year) && datetime < HolyName(year)) {
+			dir_day = "Feria";
+			bOverrideIfFeast = true;
+		}
+		break;
+
+	case SEASON_EPIPHANY:
+		if (issameday(datetime, HolyFamily(year))) {
+			dir_season = "Christmas";
+			dir_day = "HolyFamily";
+			break;
+		}
+
+		if (bSunday) {
+			dir_season = "Epiphany";
+			dir_sub = String(season_week);
+			dir_day = "Sunday";
+			break;
+		}
+		else {
+			dir_season = "Epiphany";
+			dir_sub = "1";
+			dir_day = "Sunday";
+			bOverrideIfFeast = true;
+		}
+
+		// Holy Family is the first Sunday after Epiphany. The 1st Sunday Mass is celebrated on Feria during the season of Epiphany (if there is no Feast day on that day)
+		break;
+
+	case SEASON_SEPTUAGESIMA:
+		if (issameday(datetime, Septuagesima(year))) {
+			dir_day = "Septuagesima";
+			break;
+		}
+
+		if (issameday(datetime, Sexagesima(year))) {
+			dir_day = "Sexagesima";
+			break;
+		}
+
+		if (issameday(datetime, Quinquagesima(year))) {
+			dir_day = "Quinquagesima";
+			break;
+		}
+		break;
+
+	case SEASON_LENT:
+		dir_season = "Lent";
+
+		if (datetime >= (AshWednesday(year) + SECS_PER_DAY) && datetime < sunday_after(AshWednesday(year))) {
+			dir_sub = "Ash";
+			dir_day = String(WeekDays[day]);
+			break;
+		}
+		else {
+			dir_sub = String(season_week);
+			dir_day = String(WeekDays[day]);
+			// Need to handle Vigil Mass (Holy Saturday after sunset). 
+			// Holy Saturday (before the Vigil) is in Lent/6/Saturday/. Easter Vigil Mass is in Easter/Vigil/, but is in (at the end of) Lent season, so it would be done here
+		}
+		break;
+
+	case SEASON_EASTER:
+		dir_season = "Easter";
+
+		if (season_week == 1) {
+			// in Easter week
+			dir_day = String(WeekDays[day]);
+		}
+		else {
+			int week_after_easter = season_week - 1;
+			if (bSunday) { // file directories are weeks *after* easter, hence Easter/1/ = Second Week of Easter or 1st Week After Easter, so subtract 1 to season_week
+				if (week_after_easter >= 1 && week_after_easter <= 5) {
+					dir_sub = String(week_after_easter);
+					dir_day = "Sunday";
+				}
+
+				if (week_after_easter == 6) {
+					dir_season = "Ascension"; // Seventh Sunday after Easter Sunday is Sunday after the Ascension
+					dir_day = "Sunday";
+				}
+			}
+			else { // if not a Sunday
+				if (week_after_easter >= 1 && week_after_easter <= 4) {
+					dir_sub = String(week_after_easter);
+					dir_day = "Sunday"; // feria of Paschaltide if no feast on the same day (use the Sunday Mass for the Sunday of that week)
+					bOverrideIfFeast = true;
+				}
+
+				if (week_after_easter == 5) { // season_week is the week number of easter, 6th week of Easter is 5th week after Easter week
+					switch (day) {
+					case PY_MON:
+					case PY_TUE:
+						dir_sub = "5"; // rogation days in Easter
+						dir_day = "Rogation";
+						break;
+
+					case PY_WED:
+						dir_sub = "5"; // rogation days in Easter
+						dir_day = "Rogation";
+						// Day before Ascension Thursday is also the Vigil of the Ascension (after sunset?). Support for this should be added here
+						break;
+
+					case PY_THU:
+						dir_season = "Ascension"; // Ascension Thursday
+						dir_day = "Thursday";
+						break;
+
+					case PY_FRI: // Friday after Ascension, may be feria of Ascension if no feast day
+						dir_season = "Ascension";
+						dir_day = "Feria";
+						bOverrideIfFeast = true;
+						break;
+					}
+				}
+
+				if (week_after_easter == 6) {
+					// feria of Ascension
+					dir_season = "Ascension";
+					dir_day = "Feria";
+					bOverrideIfFeast = true;
+				}
+			}
+		}
+		break;
+
+	case SEASON_PENTECOST:
+		dir_season = "Pentecost";
+
+		if (datetime >= Pentecost(year) && datetime < TrinitySunday(year)) {
+			if (bSunday) {
+				dir_day = "Sunday";
+			}
+			else {
+				dir_sub = "Whit";
+				dir_day = String(WeekDays[day]);
+			}
+			break;
+		}
+		break;
+
+	case SEASON_AFTER_PENTECOST:
+		// from the first week after Pentecost up to the beginning of Advent in the next Liturgical year
+		dir_season = "Pentecost";
+
+		if (issameday(datetime, TrinitySunday(year))) {
+			dir_day = "TrinitySunday";
+			break;
+		}
+
+		if (issameday(datetime, CorpusChristi(year))) {
+			dir_day = "CorpusChristi";
+			break;
+		}
+
+		if (issameday(datetime, SacredHeart(year))) {
+			dir_day = "SacredHeartofJesus";
+			break;
+		}
+
+		if (IsEmberDay(datetime)) { // Ember days of Pentecost season (in September)
+			dir_sub = "Ember";
+			dir_day = String(WeekDays[day]);
+			break;
+		}
+
+		if (issameday(datetime, ChristTheKing(year))) {
+			dir_day = "ChristusRex";
+			break;
+		}
+
+//		if (bSunday) {
+//			dir_sub = String(season_week);
+//			dir_day = "Sunday";
+//			break;
+//		}
+
+		if (bSunday) {
+			uint8_t after_pentecost_numweeks = Season_Week(first_advent_sunday(year) - SECS_PER_WEEK, season);
+
+			if (issameday(sunday_after(datetime), first_advent_sunday(year))) {
+				dir_sub = "Last";		// Last Sunday of Pentecost
+				dir_day = "Sunday";
+			}
+			else {
+				if (season_week > 23) {	// Epiphany resumed
+					int epiphany_resumed_week = season_week + 7 - after_pentecost_numweeks;
+					dir_season = "Epiphany";
+					dir_sub = "Resumed";
+					dir_subsub = String(epiphany_resumed_week);
+					dir_day = "Sunday";
+				}
+				else {
+					dir_sub = String(season_week);
+					dir_day = "Sunday";
+					break;
+				}
+			}
+		}
+		break;
+
+	default:
+		break;
+	}
+
+	String filename = "./1962/" + String(month_of_year) + "/" + String(day_of_month) + "/title_en.txt";
+
+	if (dir_day == "" || (bOverrideIfFeast && FileExists(filename))) {
+		dir_season = String(month_of_year);
+		dir_sub = "";
+		dir_subsub = "";
+		dir_day = String(day_of_month);
+	}
+
+	FileDir = "./1962/" + dir_season + "/" + dir_sub + "/" + dir_subsub + "/" + dir_day + "/";
+	FileDir.replace("///", "/");
+	FileDir.replace("//", "/");
+	//printf("FileDir = %s\n", FileDir.c_str());
+}
+
+bool Tridentine::FileExists(String filename) {
+	FILE* fp = fopen(filename.c_str(), "rb");
+
+	if (fp != NULL) {
+		fclose(fp);
+		return true;
+	}
+	return false;
 }
 
 void Tridentine::GetMassAndCommFromTrFixedFeast(Tr_Fixed_Feast& trff, String& Mass, String& Commemoration, uint8_t season, uint8_t day_class) {
@@ -2249,6 +2558,7 @@ void Tridentine::get(time64_t datetime, Tr_Calendar_Day& td, bool doRogations) {
 	td.Mass = Mass;
 	td.Commemoration = Commemoration;
 	td.HolyDayOfObligation = hdo;
+	Get1962FileDir(datetime, td.Filename1962);
 
 #if(false)
 	#ifndef __AVR__
@@ -2300,8 +2610,28 @@ void Tridentine::GetMoveableFeast(time64_t datetime, bool doRogations, bool& is_
 	if (issameday(datetime, FatThursday(year))) { feast = 14; cls = 4; }
 	if (issameday(datetime, ShroveMonday(year))) { feast = 15; cls = 3; }
 	if (issameday(datetime, MardiGras(year))) { feast = 16; cls = 4; }
-	if (issameday(datetime, StMatthias(year))) { feast = 19; cls = 2; } // moved up before Sexagesima and Septuagesima so that these take precedence, should one of them fall on the same day as St Matthias (they are Sundays)
-	if (issameday(datetime, Sexagesima(year))) { feast = 17; cls = 2; }
+	
+	if (issameday(datetime, StMatthias(year))) { 
+		if (feast == 0 || cls > 2) {
+			feast = 19; cls = 2;
+		}
+		else if (cls == 2) {
+			feast2 = feast;
+			comm2 = true;
+			feast = 19;
+		}
+		else {
+			feast2 = 19; 
+			comm2 = true;
+		}
+	} // moved up before Sexagesima and Septuagesima so that these take precedence, should one of them fall on the same day as St Matthias (they are Sundays)
+	
+	if (issameday(datetime, Sexagesima(year))) { 
+		feast = 17; cls = 2; 
+		if (feast2 == 19) {
+			comm2 = false;	// If Sexgesima falls on the same day as St Matthias, St Matthias is not celebrated.
+		}
+	}
 	if (issameday(datetime, Septuagesima(year))) { feast = 18; cls = 2; }
 	if (issameday(datetime, StGabrielOfOurLadyOfSorrows(year))) { feast = 20; cls = 3; }
 	if (issameday(datetime, LaetareSunday(year))) { feast = 21; cls = 1; }
@@ -2406,7 +2736,7 @@ void Tridentine::GetFixedFeast(time64_t datetime, bool& is_feast, uint8_t& cls, 
 		
 		feast_lord = trff.Feast_Of_The_Lord;
 		immaculate_conception = trff.ImmaculateConception;
-		hdo = trff.Holy_Day_Of_Obligation || sunday(datetime);
+		hdo = trff.Holy_Day_Of_Obligation;
 	}
 }
 

@@ -49,7 +49,7 @@
 22 2 : Chair of St. Peter, II class
 22 c : Com. of St. Paul.
 23 3 : St. Peter Damian Confessor, III class.
-24 2 : St. Matthias Apostle, II class.
+# 24 2 : St. Matthias Apostle, II class.
 
 = 3
 4 3 : St. Casimir Confessor, III class

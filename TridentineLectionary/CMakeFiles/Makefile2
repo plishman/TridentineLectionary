@@ -59,10 +59,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/plishman/Documents/TridentineLectionary/TridentineLectionary
+CMAKE_SOURCE_DIR = /home/plishman/Host/TridentineLectionary/TridentineLectionary
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/plishman/Documents/TridentineLectionary/TridentineLectionary
+CMAKE_BINARY_DIR = /home/plishman/Host/TridentineLectionary/TridentineLectionary
 
 #=============================================================================
 # Target rules for target CMakeFiles/TridentineLectionary.dir
@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /home/plishman/Documents/TridentineLectionary/TridentineLecti
 CMakeFiles/TridentineLectionary.dir/all:
 	$(MAKE) -f CMakeFiles/TridentineLectionary.dir/build.make CMakeFiles/TridentineLectionary.dir/depend
 	$(MAKE) -f CMakeFiles/TridentineLectionary.dir/build.make CMakeFiles/TridentineLectionary.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target TridentineLectionary"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target TridentineLectionary"
 .PHONY : CMakeFiles/TridentineLectionary.dir/all
 
 # Include target in all.
@@ -81,9 +81,9 @@ all: CMakeFiles/TridentineLectionary.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TridentineLectionary.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TridentineLectionary.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles 0
 .PHONY : CMakeFiles/TridentineLectionary.dir/rule
 
 # Convenience name for target.

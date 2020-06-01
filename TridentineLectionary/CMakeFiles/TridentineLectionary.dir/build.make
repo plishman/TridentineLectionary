@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/plishman/Documents/TridentineLectionary/TridentineLectionary
+CMAKE_SOURCE_DIR = /home/plishman/Host/TridentineLectionary/TridentineLectionary
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/plishman/Documents/TridentineLectionary/TridentineLectionary
+CMAKE_BINARY_DIR = /home/plishman/Host/TridentineLectionary/TridentineLectionary
 
 # Include any dependencies generated for this target.
 include CMakeFiles/TridentineLectionary.dir/depend.make
@@ -59,107 +59,107 @@ include CMakeFiles/TridentineLectionary.dir/flags.make
 
 CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.o: CMakeFiles/TridentineLectionary.dir/flags.make
 CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.o: Ordinalizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.o -c /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Ordinalizer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.o -c /home/plishman/Host/TridentineLectionary/TridentineLectionary/Ordinalizer.cpp
 
 CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Ordinalizer.cpp > CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Host/TridentineLectionary/TridentineLectionary/Ordinalizer.cpp > CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.i
 
 CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Ordinalizer.cpp -o CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Host/TridentineLectionary/TridentineLectionary/Ordinalizer.cpp -o CMakeFiles/TridentineLectionary.dir/Ordinalizer.cpp.s
 
 CMakeFiles/TridentineLectionary.dir/pch.cpp.o: CMakeFiles/TridentineLectionary.dir/flags.make
 CMakeFiles/TridentineLectionary.dir/pch.cpp.o: pch.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TridentineLectionary.dir/pch.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/pch.cpp.o -c /home/plishman/Documents/TridentineLectionary/TridentineLectionary/pch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TridentineLectionary.dir/pch.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/pch.cpp.o -c /home/plishman/Host/TridentineLectionary/TridentineLectionary/pch.cpp
 
 CMakeFiles/TridentineLectionary.dir/pch.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TridentineLectionary.dir/pch.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Documents/TridentineLectionary/TridentineLectionary/pch.cpp > CMakeFiles/TridentineLectionary.dir/pch.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Host/TridentineLectionary/TridentineLectionary/pch.cpp > CMakeFiles/TridentineLectionary.dir/pch.cpp.i
 
 CMakeFiles/TridentineLectionary.dir/pch.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TridentineLectionary.dir/pch.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Documents/TridentineLectionary/TridentineLectionary/pch.cpp -o CMakeFiles/TridentineLectionary.dir/pch.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Host/TridentineLectionary/TridentineLectionary/pch.cpp -o CMakeFiles/TridentineLectionary.dir/pch.cpp.s
 
 CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.o: CMakeFiles/TridentineLectionary.dir/flags.make
 CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.o: stdlib_noniso.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.o -c /home/plishman/Documents/TridentineLectionary/TridentineLectionary/stdlib_noniso.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.o -c /home/plishman/Host/TridentineLectionary/TridentineLectionary/stdlib_noniso.cpp
 
 CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Documents/TridentineLectionary/TridentineLectionary/stdlib_noniso.cpp > CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Host/TridentineLectionary/TridentineLectionary/stdlib_noniso.cpp > CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.i
 
 CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Documents/TridentineLectionary/TridentineLectionary/stdlib_noniso.cpp -o CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Host/TridentineLectionary/TridentineLectionary/stdlib_noniso.cpp -o CMakeFiles/TridentineLectionary.dir/stdlib_noniso.cpp.s
 
 CMakeFiles/TridentineLectionary.dir/Time.cpp.o: CMakeFiles/TridentineLectionary.dir/flags.make
 CMakeFiles/TridentineLectionary.dir/Time.cpp.o: Time.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TridentineLectionary.dir/Time.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/Time.cpp.o -c /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Time.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TridentineLectionary.dir/Time.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/Time.cpp.o -c /home/plishman/Host/TridentineLectionary/TridentineLectionary/Time.cpp
 
 CMakeFiles/TridentineLectionary.dir/Time.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TridentineLectionary.dir/Time.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Time.cpp > CMakeFiles/TridentineLectionary.dir/Time.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Host/TridentineLectionary/TridentineLectionary/Time.cpp > CMakeFiles/TridentineLectionary.dir/Time.cpp.i
 
 CMakeFiles/TridentineLectionary.dir/Time.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TridentineLectionary.dir/Time.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Time.cpp -o CMakeFiles/TridentineLectionary.dir/Time.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Host/TridentineLectionary/TridentineLectionary/Time.cpp -o CMakeFiles/TridentineLectionary.dir/Time.cpp.s
 
 CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.o: CMakeFiles/TridentineLectionary.dir/flags.make
 CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.o: Tridentine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.o -c /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Tridentine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.o -c /home/plishman/Host/TridentineLectionary/TridentineLectionary/Tridentine.cpp
 
 CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Tridentine.cpp > CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Host/TridentineLectionary/TridentineLectionary/Tridentine.cpp > CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.i
 
 CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Documents/TridentineLectionary/TridentineLectionary/Tridentine.cpp -o CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Host/TridentineLectionary/TridentineLectionary/Tridentine.cpp -o CMakeFiles/TridentineLectionary.dir/Tridentine.cpp.s
 
 CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.o: CMakeFiles/TridentineLectionary.dir/flags.make
 CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.o: TridentineLectionary.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.o -c /home/plishman/Documents/TridentineLectionary/TridentineLectionary/TridentineLectionary.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.o -c /home/plishman/Host/TridentineLectionary/TridentineLectionary/TridentineLectionary.cpp
 
 CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Documents/TridentineLectionary/TridentineLectionary/TridentineLectionary.cpp > CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Host/TridentineLectionary/TridentineLectionary/TridentineLectionary.cpp > CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.i
 
 CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Documents/TridentineLectionary/TridentineLectionary/TridentineLectionary.cpp -o CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Host/TridentineLectionary/TridentineLectionary/TridentineLectionary.cpp -o CMakeFiles/TridentineLectionary.dir/TridentineLectionary.cpp.s
 
 CMakeFiles/TridentineLectionary.dir/WString.cpp.o: CMakeFiles/TridentineLectionary.dir/flags.make
 CMakeFiles/TridentineLectionary.dir/WString.cpp.o: WString.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TridentineLectionary.dir/WString.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/WString.cpp.o -c /home/plishman/Documents/TridentineLectionary/TridentineLectionary/WString.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TridentineLectionary.dir/WString.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/WString.cpp.o -c /home/plishman/Host/TridentineLectionary/TridentineLectionary/WString.cpp
 
 CMakeFiles/TridentineLectionary.dir/WString.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TridentineLectionary.dir/WString.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Documents/TridentineLectionary/TridentineLectionary/WString.cpp > CMakeFiles/TridentineLectionary.dir/WString.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Host/TridentineLectionary/TridentineLectionary/WString.cpp > CMakeFiles/TridentineLectionary.dir/WString.cpp.i
 
 CMakeFiles/TridentineLectionary.dir/WString.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TridentineLectionary.dir/WString.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Documents/TridentineLectionary/TridentineLectionary/WString.cpp -o CMakeFiles/TridentineLectionary.dir/WString.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Host/TridentineLectionary/TridentineLectionary/WString.cpp -o CMakeFiles/TridentineLectionary.dir/WString.cpp.s
 
 CMakeFiles/TridentineLectionary.dir/yml.cpp.o: CMakeFiles/TridentineLectionary.dir/flags.make
 CMakeFiles/TridentineLectionary.dir/yml.cpp.o: yml.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/TridentineLectionary.dir/yml.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/yml.cpp.o -c /home/plishman/Documents/TridentineLectionary/TridentineLectionary/yml.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/TridentineLectionary.dir/yml.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TridentineLectionary.dir/yml.cpp.o -c /home/plishman/Host/TridentineLectionary/TridentineLectionary/yml.cpp
 
 CMakeFiles/TridentineLectionary.dir/yml.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TridentineLectionary.dir/yml.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Documents/TridentineLectionary/TridentineLectionary/yml.cpp > CMakeFiles/TridentineLectionary.dir/yml.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/plishman/Host/TridentineLectionary/TridentineLectionary/yml.cpp > CMakeFiles/TridentineLectionary.dir/yml.cpp.i
 
 CMakeFiles/TridentineLectionary.dir/yml.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TridentineLectionary.dir/yml.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Documents/TridentineLectionary/TridentineLectionary/yml.cpp -o CMakeFiles/TridentineLectionary.dir/yml.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/plishman/Host/TridentineLectionary/TridentineLectionary/yml.cpp -o CMakeFiles/TridentineLectionary.dir/yml.cpp.s
 
 # Object files for target TridentineLectionary
 TridentineLectionary_OBJECTS = \
@@ -185,7 +185,7 @@ TridentineLectionary: CMakeFiles/TridentineLectionary.dir/WString.cpp.o
 TridentineLectionary: CMakeFiles/TridentineLectionary.dir/yml.cpp.o
 TridentineLectionary: CMakeFiles/TridentineLectionary.dir/build.make
 TridentineLectionary: CMakeFiles/TridentineLectionary.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable TridentineLectionary"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable TridentineLectionary"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TridentineLectionary.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -198,6 +198,6 @@ CMakeFiles/TridentineLectionary.dir/clean:
 .PHONY : CMakeFiles/TridentineLectionary.dir/clean
 
 CMakeFiles/TridentineLectionary.dir/depend:
-	cd /home/plishman/Documents/TridentineLectionary/TridentineLectionary && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/plishman/Documents/TridentineLectionary/TridentineLectionary /home/plishman/Documents/TridentineLectionary/TridentineLectionary /home/plishman/Documents/TridentineLectionary/TridentineLectionary /home/plishman/Documents/TridentineLectionary/TridentineLectionary /home/plishman/Documents/TridentineLectionary/TridentineLectionary/CMakeFiles/TridentineLectionary.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/plishman/Host/TridentineLectionary/TridentineLectionary && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/plishman/Host/TridentineLectionary/TridentineLectionary /home/plishman/Host/TridentineLectionary/TridentineLectionary /home/plishman/Host/TridentineLectionary/TridentineLectionary /home/plishman/Host/TridentineLectionary/TridentineLectionary /home/plishman/Host/TridentineLectionary/TridentineLectionary/CMakeFiles/TridentineLectionary.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/TridentineLectionary.dir/depend
 
