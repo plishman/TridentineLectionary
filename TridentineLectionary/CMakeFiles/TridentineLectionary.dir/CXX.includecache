@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/Ordinalizer.cpp
-Ordinalizer.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/Ordinalizer.h
-
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/Ordinalizer.h
 RCGlobals.h
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/RCGlobals.h
@@ -20,20 +16,6 @@ DebugPort.h
 WString.h
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/WString.h
 stdint.h
--
-
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/Time.cpp
-Arduino.h
--
-WProgram.h
--
-TimeLib.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/TimeLib.h
-windows.h
--
-time.h
--
-sys/time.h
 -
 
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/TimeLib.h
@@ -64,22 +46,6 @@ yml.h
 Ordinalizer.h
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/Ordinalizer.h
 
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/TridentineLectionary.cpp
-pch.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/pch.h
-stdio.h
--
-Tridentine.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/Tridentine.h
-yml.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/yml.h
-
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/WString.cpp
-stdafx.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/stdafx.h
-WString.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/WString.h
-
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/WString.h
 stdlib.h
 -
@@ -90,39 +56,9 @@ ctype.h
 stdlib_noniso.h
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/stdlib_noniso.h
 
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/pch.cpp
-pch.h
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/pch.h
 
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/pch.h
-
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/stdafx.h
-
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/stdlib_noniso.cpp
-stdafx.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/stdafx.h
-stdlib.h
--
-string.h
--
-stdio.h
--
-stdlib_noniso.h
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/stdlib_noniso.h
-math.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/math.h
-inttypes.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/inttypes.h
-
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/stdlib_noniso.h
-
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/yml.cpp
-yml.h
-/home/plishman/Host/TridentineLectionary/TridentineLectionary/yml.h
-stdio.h
--
-direct.h
--
 
 /home/plishman/Host/TridentineLectionary/TridentineLectionary/yml.h
 TimeLib.h

@@ -2096,12 +2096,12 @@ void Tridentine::Get1962FileDir(time64_t datetime, String& FileDir) {
 	case SEASON_EASTER:
 		dir_season = "Easter";
 
-		if (season_week == 1) {
+		if (season_week == 0) {
 			// in Easter week
 			dir_day = String(WeekDays[day]);
 		}
 		else {
-			int week_after_easter = season_week - 1;
+			int week_after_easter = season_week;
 			if (bSunday) { // file directories are weeks *after* easter, hence Easter/1/ = Second Week of Easter or 1st Week After Easter, so subtract 1 to season_week
 				if (week_after_easter >= 1 && week_after_easter <= 5) {
 					dir_sub = String(week_after_easter);
