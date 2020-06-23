@@ -120,6 +120,8 @@ en:
           ferial: 'Easter %{weekday}'
         sunday: '%{week} Sunday after Easter'
         ferial: 'Feria of Paschaltide'
+      ascension:
+        ferial: 'Feria of Ascension'
       pentecost:
         ferial: '%{weekday} in the Octave of Pentecost'
         ember_day: 'Ember %{weekday} of Pentecost'

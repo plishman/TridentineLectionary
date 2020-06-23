@@ -55,6 +55,10 @@ String Yml::get(String I18nPath) {
 }
 
 String Yml::get(String I18nPath, bool& bError) {
+#ifndef __AVR__
+	//printf("Get() token: %s\n", I18nPath.c_str());
+#endif
+
 	bError = true;
 
 	if (I18nPath == "") return "";	// no output if no path

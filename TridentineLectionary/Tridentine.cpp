@@ -1914,6 +1914,12 @@ void Tridentine::GetDay(time64_t datetime, String& Mass) {
 				bNoOutput = true;
 			}
 		}
+		else if (datetime > (Ascension(year) + SECS_PER_DAY) && datetime < Pentecost(year)) {
+			yml_season = "ascension.";
+			if (bSunday) {
+				bNoOutput = true;
+			}
+		}
 		break;
 
 	case SEASON_PENTECOST:

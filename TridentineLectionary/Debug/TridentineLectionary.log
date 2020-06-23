@@ -1,2 +1,6 @@
-﻿  TridentineLectionary.cpp
+﻿  Tridentine.cpp
+  yml.cpp
+c:\users\phil lishman\documents\vm shared folder\tridentinelectionary\tridentinelectionary\yml.cpp(461): warning C4018: '<': signed/unsigned mismatch
+c:\users\phil lishman\documents\vm shared folder\tridentinelectionary\tridentinelectionary\yml.cpp(465): warning C4244: '=': conversion from 'long' to 'uint16_t', possible loss of data
+  Generating Code...
   TridentineLectionary.vcxproj -> C:\Users\Phil Lishman\Documents\VM shared folder\TridentineLectionary\Debug\TridentineLectionary.exe
